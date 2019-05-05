@@ -3,8 +3,23 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-    },
-
+     options:{
+     separator: ';'
+     } ,
+    // views:{
+    //   src:["views/**/*.ejs"],
+    //   dest:"dist/views.ejs"
+    //  },
+   public:{
+      src:["public/**/*.js"],
+      dest:"dist/public.js"
+     }
+   // app:{
+   //    src:["app/**/*.js"],
+   //    dest:"dist/app.js" 
+        
+   //   }
+   },
     mochaTest: {
       test: {
         options: {
@@ -21,11 +36,26 @@ module.exports = function (grunt) {
     },
 
     uglify: {
+       build: {
+        files: [{
+            expand: true,
+            src: 'dist/*.js',
+            dest: 'public',
+            // cwd: 'dest/scripts'
+        }]
+      }
+    
     },
 
     eslint: {
+     //'Gruntfile.js'
+     // disableEslintIgnore: true,
+     //  useGlobalEslint: true,
       target: [
-        // Add list of files to lint here
+
+           'dist/*.js'
+           // "dist/**/*.js",
+           // 'i/**/*.js'// Add list of files to lint here
       ]
     },
 
